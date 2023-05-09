@@ -21,4 +21,8 @@ public class AlumnoService {
     public List<Alumno> ListarAlumnos(){
     	return repo.findAll();
     }
+    
+    public void EliminarAlumno(String cod) {
+    	repo.deleteById(cod);
+    }
 }
