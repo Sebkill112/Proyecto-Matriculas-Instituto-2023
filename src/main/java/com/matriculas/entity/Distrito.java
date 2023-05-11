@@ -18,9 +18,9 @@ public class Distrito {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "cod_Distrito")
+	@Column(name = "cod_distrito")
 	private Integer codigo;
-	@Column(name = "nom_Distrito")
+	@Column(name = "nom_distrito")
 	private String nombre;
 	
 	 //Relacion Uno a Muchos

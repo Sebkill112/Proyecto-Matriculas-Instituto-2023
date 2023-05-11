@@ -31,11 +31,11 @@ public class Alumno {
 	
 	//Relacion muchos a uno
 	@ManyToOne
-	@JoinColumn(name = "cod_Distrito")
+	@JoinColumn(name = "cod_distrito")
 	private Distrito distrito;
 	
 	@ManyToOne
-	@JoinColumn(name = "cod_Pais")
+	@JoinColumn(name = "cod_pais")
 	private Pais pais;
 
 	public String getDni() {
