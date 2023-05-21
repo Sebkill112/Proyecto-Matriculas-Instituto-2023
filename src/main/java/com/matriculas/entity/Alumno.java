@@ -1,6 +1,9 @@
 package com.matriculas.entity;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -37,6 +41,20 @@ public class Alumno {
 	@ManyToOne
 	@JoinColumn(name = "cod_pais")
 	private Pais pais;
+	
+	@OneToMany(mappedBy = "alumno")
+	@JsonIgnore
+	private List<Inscripcion> listaInscripcion;
+	
+	
+
+	public List<Inscripcion> getListaInscripcion() {
+		return listaInscripcion;
+	}
+
+	public void setListaInscripcion(List<Inscripcion> listaInscripcion) {
+		this.listaInscripcion = listaInscripcion;
+	}
 
 	public String getDni() {
 		return dni;

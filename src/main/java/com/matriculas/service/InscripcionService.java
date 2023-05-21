@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.matriculas.dao.InscripcionRepository;
+import com.matriculas.entity.Inscripcion;
 
 @Service
 public class InscripcionService {
@@ -14,5 +15,9 @@ public class InscripcionService {
 	
 	public String GenerarCodigo() {
 		return repo.generarNumeroInscripcion();
+	}
+	
+	public void GrabarInscripcion(Inscripcion i) {
+		repo.save(i);
 	}
 }

@@ -1,6 +1,7 @@
 package com.matriculas.entity;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,16 +20,26 @@ public class Inscripcion {
 	@Id
 	@Column(name = "id_inscripcion")
 	private String idInscripcion;
-	@Column(name = "dni")
-	private String dni;
 	@Column(name = "fec_inscripcion")
-	private Date fecha;
+	private LocalDate fecha;
 	@Column(name = "estado")
 	private String estado;
 
 	@ManyToOne
 	@JoinColumn(name = "id_carrera")
 	private Carrera carrera;
+
+	@ManyToOne
+	@JoinColumn(name = "dni")
+	private Alumno alumno;
+
+	public Alumno getAlumno() {
+		return alumno;
+	}
+
+	public void setAlumno(Alumno alumno) {
+		this.alumno = alumno;
+	}
 
 	public String getIdInscripcion() {
 		return idInscripcion;
@@ -38,19 +49,11 @@ public class Inscripcion {
 		this.idInscripcion = idInscripcion;
 	}
 
-	public String getDni() {
-		return dni;
-	}
-
-	public void setDni(String dni) {
-		this.dni = dni;
-	}
-
-	public Date getFecha() {
+	public LocalDate getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
 

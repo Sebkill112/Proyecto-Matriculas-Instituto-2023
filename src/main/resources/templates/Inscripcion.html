@@ -36,7 +36,7 @@
 
 	<div class="container border border-info">
 
-		<form class="row g-3" method="post" action="ServletRegistro?accion=GRABAR">
+		<form class="row g-3" method="post" action="/inscripcion/grabar">
 			
 			
 			
@@ -47,7 +47,7 @@
 			</div>
 			<div class="col-md-4">
 					    <label for="inputPassword4" class="form-label">Fecha Registro</label>
-					    <input type="text" class="form-control" readonly name="fecha">
+					    <input type="text" class="form-control" readonly name="fecha" th:value="${fecha}">
 			</div>
 			
 				<input type="hidden" value="0" name="idInscripcion">
@@ -85,9 +85,12 @@
 			<h2>Datos Carrera</h2>
 			 <div class="form-group">
 				    <label for="exampleCondicion" class="form-label">Carrera</label>
-				    <select class="form-select form-control" name="facultad" id="id-carrera">
+				    <select class="form-select form-control" name="carrera" id="id-carrera">
 					  <option value="" selected>[Seleccione Facultad]</option>
-					  			
+					  		<option th:each="bean:${carreras}"
+									th:utext="${bean.nombre}"
+									th:value="${bean.codigo}"
+							    />	
 
 					</select>
 				  </div>
@@ -132,6 +135,59 @@
 	<script src="https://kit.fontawesome.com/08aaa156fb.js" crossorigin="anonymous"></script>
 	<script th:src="@{/resources/alertifyjs/alertify.js}"></script>
 	<script th:src="@{/resources/alertifyjs/alertify.min.js}"></script>
+	
+	
+	<script th:inline="javascript" th:if="${MENSAJE!=null}">
+		let msj;
+		msj=/*[[${MENSAJE}]]*/
+		toastr.success(msj, toastr.options = {
+			"timeOut": "2000",
+			"positionClass " : " toast-top-right ",
+		});
+	</script>
+	
+	<script>
+		$(document).on("click", ".btn-buscar", function () {
+			var listado=[];
+			let dni,resultado;
+			dni=$("#id-dni").val();
+		$.get("/inscripcion/alumno", function (response) {
+			
+			$.each(response,function(index,item){
+				listado.push(item.dni);
+			});
+			
+			resultado=$.inArray(dni,listado);
+			
+			if(resultado !=-1){
+				$.get("/alumno/buscar?dni="+dni,function(x){
+					$("#id-nombre").val(x.nombre);
+					$("#id-apellido").val(x.apellido);
+					$("#id-fecNacimiento").val(x.fecNac);
+					$("#id-correo").val(x.correo);
+					$("#id-direccion").val(x.direccion);
+					console.log(x);
+				})
+			}else{
+				alert("no esta registrado");
+			}
+		})
+			
+		})
+		
+		$(document).on("change", "#id-carrera", function () {
+			
+			let cod;
+			cod=$("#id-carrera option:selected").val();
+			$.get("/carrera/buscar?codigo="+cod, function (response) {
+				console.log(response);
+			$("#id-facultad").val(response.facultad.nombre);
+			$("#id-ciclo").val(response.ciclos);
+			$("#id-creditos").val(response.creditos);
+			})
+		})
+		
+	</script>
 	
 
 	

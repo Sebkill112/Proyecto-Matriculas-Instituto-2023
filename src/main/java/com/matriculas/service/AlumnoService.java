@@ -25,4 +25,8 @@ public class AlumnoService {
     public void EliminarAlumno(String cod) {
     	repo.deleteById(cod);
     }
+    
+    public Alumno BuscarAlumnoPorCodigo(String dni) {
+    	return repo.findById(dni).orElse(null);
+    }
 }
