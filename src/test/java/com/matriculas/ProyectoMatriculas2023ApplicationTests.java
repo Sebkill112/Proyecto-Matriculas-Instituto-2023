@@ -10,33 +10,22 @@ import com.matriculas.entity.Alumno;
 import com.matriculas.entity.Distrito;
 import com.matriculas.entity.Pais;
 import com.matriculas.service.AlumnoService;
+import com.matriculas.service.InscripcionService;
 
 @SpringBootTest
 class ProyectoMatriculas2023ApplicationTests {
 
 	@Autowired
-	private AlumnoService servicio;
+	private InscripcionService servicio;
 	
 	@Test
 	void contextLoads() {
 		
-		Alumno a = new Alumno();
 		
-		a.setDni("80256932");
-		a.setNombre("Luigui");
-		a.setApellido("Ramirez");
-		a.setCorreo("luigui@gmail.com");
-		a.setFecNac(LocalDate.parse("2002-04-19"));
-		a.setDireccion("Av Izaguirre 282");
+		String data = servicio.GenerarCodigo();
 		
-		Distrito d = new Distrito();
-		d.setCodigo(3);
-		a.setDistrito(d);
-		Pais p = new Pais();
-		p.setCodigo(1);
-		a.setPais(p);
-		servicio.GrabarAlumno(a);
 		
+		System.out.println(data);
 		
 	}
 
