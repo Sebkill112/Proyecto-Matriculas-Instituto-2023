@@ -17,6 +17,18 @@ public class CarreraService {
 	public List<Carrera> listarCarreras() {
 		return repo.findAll();
 	}
+	
+	public void agregar(Carrera c) {
+		repo.save(c);
+	}
+	
+	public void actualizar(Carrera c) {
+		repo.save(c);
+	}
+	
+	public void eliminarPorId(Integer cod) {
+		repo.deleteById(cod);
+	}
 
 	public Carrera BuscarCarreraPorID(Integer cod) {
 		return repo.findById(cod).orElse(null);
