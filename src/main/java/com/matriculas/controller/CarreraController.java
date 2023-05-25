@@ -10,6 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.matriculas.entity.Carrera;
 import com.matriculas.entity.Facultad;
 import com.matriculas.service.CarreraService;
+import com.matriculas.service.FacultadService;
 
 
 // TEST ENVIO GIT SSSSS 
@@ -22,6 +23,9 @@ public class CarreraController {
 	@Autowired
 	private CarreraService serCarrera;
 	
+	@Autowired
+	private FacultadService serFacultad;
+	
 	@RequestMapping("/buscar")
 	@ResponseBody
 	public Carrera buscarPorID(@RequestParam("codigo") Integer cod) {
@@ -32,6 +36,7 @@ public class CarreraController {
 	public String lista(Model model) {
 		
 		model.addAttribute("carreras",serCarrera.listarCarreras());
+		model.addAttribute("facultades", serFacultad.listarFacultades());
 		
 		
 		return "carrera";
@@ -42,7 +47,7 @@ public class CarreraController {
 			@RequestParam("codigo") Integer cod,
 			@RequestParam("nombre") String nom,
 			@RequestParam("facultad") int fac,
-			@RequestParam("ciclo") String cic,
+			@RequestParam("ciclos") String cic,
 			@RequestParam("creditos") int cred,
 			RedirectAttributes redirect)
 	{
@@ -81,7 +86,7 @@ public class CarreraController {
 	public String eliminarPorID(@RequestParam("codigoEliminar") Integer cod,RedirectAttributes redirect) {
 		
 		serCarrera.eliminarPorId(cod);
-		redirect.addFlashAttribute("MENSAJE","Libro "+cod+" eliminado");
+		redirect.addFlashAttribute("MENSAJE","Carrera "+cod+" eliminado");
 		
 		return "redirect:/carrera/lista";
 	}
