@@ -8,7 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.matriculas.entity.Alumno;
 import com.matriculas.entity.Distrito;
-import com.matriculas.entity.Pais;
 import com.matriculas.service.AlumnoService;
 import com.matriculas.service.InscripcionService;
 

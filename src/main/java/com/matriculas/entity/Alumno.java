@@ -38,9 +38,7 @@ public class Alumno {
 	@JoinColumn(name = "cod_distrito")
 	private Distrito distrito;
 	
-	@ManyToOne
-	@JoinColumn(name = "cod_pais")
-	private Pais pais;
+	
 	
 	@OneToMany(mappedBy = "alumno")
 	@JsonIgnore
@@ -112,13 +110,7 @@ public class Alumno {
 		this.distrito = distrito;
 	}
 
-	public Pais getPais() {
-		return pais;
-	}
-
-	public void setPais(Pais pais) {
-		this.pais = pais;
-	}
+	
 	
 	
 	
