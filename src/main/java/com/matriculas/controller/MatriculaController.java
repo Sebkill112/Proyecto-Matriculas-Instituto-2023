@@ -15,20 +15,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.matriculas.entity.Alumno;
 import com.matriculas.entity.Carrera;
-import com.matriculas.entity.Inscripcion;
+import com.matriculas.entity.Matricula;
 import com.matriculas.service.AlumnoService;
 import com.matriculas.service.CarreraService;
-import com.matriculas.service.InscripcionService;
+import com.matriculas.service.MatriculaService;
 
 @Controller
-@RequestMapping("/inscripcion")
-public class InscripcionController {
+@RequestMapping("/matricula")
+public class MatriculaController {
 
 	@Autowired
 	private AlumnoService serAlumno;
 
 	@Autowired
-	private InscripcionService servicio;
+	private MatriculaService servicio;
 
 	@Autowired
 	private CarreraService serCarrera;
@@ -38,7 +38,7 @@ public class InscripcionController {
 		model.addAttribute("codigo", servicio.GenerarCodigo());
 		model.addAttribute("fecha", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		model.addAttribute("carreras",serCarrera.listarCarreras());
-		return "inscripcion";
+		return "matricula";
 	}
 
 	@RequestMapping("/alumno")
@@ -49,11 +49,11 @@ public class InscripcionController {
 	
 	@RequestMapping("/grabar")
 	public String GrabarInscripcion(@RequestParam("numero") String cod,@RequestParam("carrera") int carrera,@RequestParam("fecha")
-	String fec,@RequestParam("dni") String dni,RedirectAttributes redirect) {
+	String fec,@RequestParam("dni") String dni,@RequestParam("ciclo") String ciclo,RedirectAttributes redirect) {
 		
 		try {
-			Inscripcion ins = new Inscripcion();
-			ins.setIdInscripcion(cod);
+			Matricula ins = new Matricula();
+			ins.setIdMatricula(cod);
 			Carrera c = new Carrera();
 			c.setCodigo(carrera);
 			ins.setCarrera(c);
@@ -62,10 +62,11 @@ public class InscripcionController {
 			ins.setAlumno(a);
 			ins.setFecha(LocalDate.parse(fec));
 			ins.setEstado("PENDIENTE DE PAGO");
+			ins.setCiclo(ciclo);
 			
-			servicio.GrabarInscripcion(ins);
+			servicio.GrabarMatricula(ins);
 			
-			redirect.addFlashAttribute("MENSAJE","Inscripcion Grabada");
+			redirect.addFlashAttribute("MENSAJE","Matricula Grabada");
 		
 		} catch (Exception e) {
 			redirect.addFlashAttribute("MENSAJE","ERROR EN EL REGISTRO");
@@ -74,7 +75,7 @@ public class InscripcionController {
 		
 		
 		
-		return "redirect:/inscripcion/registro";
+		return "redirect:/matricula/registro";
 	}
 
 	

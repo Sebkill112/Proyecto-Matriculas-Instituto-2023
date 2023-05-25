@@ -4,11 +4,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 
-import com.matriculas.entity.Inscripcion;
 
-public interface InscripcionRepository extends JpaRepository<Inscripcion, String>{
+import com.matriculas.entity.Matricula;
+
+public interface MatriculaRepository extends JpaRepository<Matricula, String>{
 	
 	@Query(value = "{call sp_generar_numero()}" ,nativeQuery = true)
-	public String generarNumeroInscripcion();
+	public String generarNumeroMatricula();
 
 }

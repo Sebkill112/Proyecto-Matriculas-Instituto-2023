@@ -14,11 +14,11 @@ public class RolEnlace {
 	private RolEnlacePK id;
 
 	@ManyToOne
-	@JoinColumn(name = "idrol", insertable = false, updatable = false, referencedColumnName = "idrol")
+	@JoinColumn(name = "id_rol", insertable = false, updatable = false, referencedColumnName = "id_rol")
 	private Rol rol;
 
 	@ManyToOne
-	@JoinColumn(name = "idenlace", insertable = false, updatable = false, referencedColumnName = "idenlace")
+	@JoinColumn(name = "cod_menu", insertable = false, updatable = false, referencedColumnName = "cod_menu")
 	private Enlace enlace;
 
 	public RolEnlacePK getId() {

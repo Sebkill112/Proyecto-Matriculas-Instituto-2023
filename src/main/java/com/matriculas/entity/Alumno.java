@@ -40,19 +40,14 @@ public class Alumno {
 	
 	
 	
+	
+	
 	@OneToMany(mappedBy = "alumno")
 	@JsonIgnore
-	private List<Inscripcion> listaInscripcion;
+	private List<Matricula> listaMatricula;
 	
 	
 
-	public List<Inscripcion> getListaInscripcion() {
-		return listaInscripcion;
-	}
-
-	public void setListaInscripcion(List<Inscripcion> listaInscripcion) {
-		this.listaInscripcion = listaInscripcion;
-	}
 
 	public String getDni() {
 		return dni;

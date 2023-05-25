@@ -14,16 +14,18 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "inscripcion")
-public class Inscripcion {
+@Table(name = "matricula")
+public class Matricula {
 
 	@Id
-	@Column(name = "id_inscripcion")
-	private String idInscripcion;
-	@Column(name = "fec_inscripcion")
+	@Column(name = "id_matricula")
+	private String idMatricula;
+	@Column(name = "fec_matricula")
 	private LocalDate fecha;
 	@Column(name = "estado")
 	private String estado;
+	@Column(name = "ciclo")
+	private String ciclo;
 
 	@ManyToOne
 	@JoinColumn(name = "id_carrera")
@@ -33,20 +35,12 @@ public class Inscripcion {
 	@JoinColumn(name = "dni")
 	private Alumno alumno;
 
-	public Alumno getAlumno() {
-		return alumno;
+	public String getIdMatricula() {
+		return idMatricula;
 	}
 
-	public void setAlumno(Alumno alumno) {
-		this.alumno = alumno;
-	}
-
-	public String getIdInscripcion() {
-		return idInscripcion;
-	}
-
-	public void setIdInscripcion(String idInscripcion) {
-		this.idInscripcion = idInscripcion;
+	public void setIdMatricula(String idMatricula) {
+		this.idMatricula = idMatricula;
 	}
 
 	public LocalDate getFecha() {
@@ -65,12 +59,28 @@ public class Inscripcion {
 		this.estado = estado;
 	}
 
+	public String getCiclo() {
+		return ciclo;
+	}
+
+	public void setCiclo(String ciclo) {
+		this.ciclo = ciclo;
+	}
+
 	public Carrera getCarrera() {
 		return carrera;
 	}
 
 	public void setCarrera(Carrera carrera) {
 		this.carrera = carrera;
+	}
+
+	public Alumno getAlumno() {
+		return alumno;
+	}
+
+	public void setAlumno(Alumno alumno) {
+		this.alumno = alumno;
 	}
 
 }

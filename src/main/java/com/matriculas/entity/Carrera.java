@@ -19,7 +19,7 @@ import jakarta.persistence.Table;
 public class Carrera {
 
 	// Test Envio
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_carrera")
@@ -34,11 +34,10 @@ public class Carrera {
 	@ManyToOne
 	@JoinColumn(name = "cod_facultad")
 	private Facultad facultad;
-	
+
 	@OneToMany(mappedBy = "carrera")
 	@JsonIgnore
-	private List<Inscripcion> listaInscripciones;
-	
+	private List<Matricula> listaMatriculas;
 
 	public Integer getCodigo() {
 		return codigo;
@@ -78,6 +77,14 @@ public class Carrera {
 
 	public void setFacultad(Facultad facultad) {
 		this.facultad = facultad;
+	}
+
+	public List<Matricula> getListaMatriculas() {
+		return listaMatriculas;
+	}
+
+	public void setListaMatriculas(List<Matricula> listaMatriculas) {
+		this.listaMatriculas = listaMatriculas;
 	}
 
 }

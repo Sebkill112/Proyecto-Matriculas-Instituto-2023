@@ -31,12 +31,11 @@
 	</style>
 	
 	
-	<h1 class="text-center mb-4 text-uppercase">Registrar Ficha
-		Inscripcion</h1>
+	<h1 class="text-center mb-4 text-uppercase">Registrar Matricula</h1>
 
 	<div class="container border border-info">
 
-		<form class="row g-3" method="post" action="/inscripcion/grabar">
+		<form class="row g-3" method="post" action="/matricula/grabar">
 			
 			
 			
@@ -106,6 +105,20 @@
 				<label for="inputPassword4" class="form-label">Creditos</label> <input
 					type="text" class="form-control" id="id-creditos" readonly>
 			</div>
+			
+			<div class="form-group">
+				    <label for="exampleCondicion" class="form-label">Ciclo</label>
+				    <select class="form-select form-control" name="ciclo" id="id-ciclo">
+					  <option value="" selected>[Seleccione Ciclo]</option>
+					  <option value="I CICLO" >I CICLO</option>
+					  <option value="II CICLO" >II CICLO</option>
+					  <option value="III CICLO" >III CICLO</option>
+					  <option value="IV CICLO" >IV CICLO</option>
+					  <option value="V CICLO" >V CICLO</option>
+					  <option value="VI CICLO" >VI CICLO</option>		
+
+					</select>
+				  </div>
 
 			
 			<div class="form-group" style="text-align: center">
