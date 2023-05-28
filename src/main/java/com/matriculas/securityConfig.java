@@ -43,7 +43,7 @@ public class securityConfig {
 		
 		http.csrf().disable().authorizeHttpRequests().requestMatchers("/validar/**","/resources/js/**","/resources/css/**","resources/img/**",
 				"/resources/datepicker/**","/resources/**alertifyjs/**","/home/**").permitAll().and().authorizeHttpRequests().
-		requestMatchers("/docente/**","/alumno/**","/carrera/**","/matricula/**").authenticated().and().formLogin().loginPage("/validar/usuario").defaultSuccessUrl("/validar/intranet");
+		requestMatchers("/docente/**","/alumno/**","/carrera/**","/matricula/**","/horario/**").authenticated().and().formLogin().loginPage("/validar/usuario").defaultSuccessUrl("/validar/intranet");
 		
 		return http.build();
 	}

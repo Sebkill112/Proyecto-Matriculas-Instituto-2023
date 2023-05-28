@@ -10,7 +10,7 @@ public class HorarioController {
 	
 	@RequestMapping("/registro")
 	public String index() {
-		return "";
+		return "DetalleMatricula";
 	}
 	
 	
