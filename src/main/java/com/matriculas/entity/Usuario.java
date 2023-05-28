@@ -10,7 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="usuario")
+@Table(name = "usuario")
 public class Usuario {
 
 	@Id
@@ -23,71 +23,63 @@ public class Usuario {
 	private String correo;
 	@Column(name = "password")
 	private String password;
-	
-	
+	@Column(name = "dni")
+	private String dni;
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
 	@ManyToOne
-	@JoinColumn(name="id_rol")
+	@JoinColumn(name = "id_rol")
 	private Rol rol;
 
-
-	
-	
-	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}
-
 
 	public int getCodigo() {
 		return codigo;
 	}
 
-
 	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
-
 
 	public String getNombre() {
 		return nombre;
 	}
 
-
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
 
 	public String getCorreo() {
 		return correo;
 	}
 
-
 	public void setCorreo(String correo) {
 		this.correo = correo;
 	}
-
 
 	public String getPassword() {
 		return password;
 	}
 
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 
 	public Rol getRol() {
 		return rol;
 	}
 
-
 	public void setRol(Rol rol) {
 		this.rol = rol;
 	}
-	
-	
-	
-	
+
 }

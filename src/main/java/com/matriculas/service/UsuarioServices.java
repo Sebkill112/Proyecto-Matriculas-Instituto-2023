@@ -23,4 +23,8 @@ public class UsuarioServices {
 	public List<Enlace> enlacesDelUsuario(int rol){
 		return repo.traerEnlacesDelUsuario(rol);
 	}
+	
+	public void grabarUsuario (Usuario u) {
+		repo.save(u);
+	}
 }
