@@ -42,8 +42,8 @@ public class securityConfig {
 		return http.build();*/
 		
 		http.csrf().disable().authorizeHttpRequests().requestMatchers("/validar/**","/resources/js/**","/resources/css/**","resources/img/**",
-				"/resources/datepicker/**","/resources/**alertifyjs/**").permitAll().and().authorizeHttpRequests().
-		requestMatchers("/docente/**","/alumno/**","/carrera/**","/matricula/**").authenticated().and().formLogin().loginPage("/validar/usuario").defaultSuccessUrl("/validar/intranet");
+				"/resources/datepicker/**","/resources/**alertifyjs/**","/home/**").permitAll().and().authorizeHttpRequests().
+		requestMatchers("/docente/**","/alumno/**","/carrera/**","/matricula/**","/horario/**").authenticated().and().formLogin().loginPage("/validar/usuario").defaultSuccessUrl("/validar/intranet");
 		
 		return http.build();
 	}

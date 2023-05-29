@@ -77,6 +77,12 @@ public class MatriculaController {
 		
 		return "redirect:/matricula/registro";
 	}
+	
+	@RequestMapping("/listar")
+	@ResponseBody
+	public List<Matricula> listadoMatricula(@RequestParam("dni") String dni,String estado){
+		return servicio.listadoMatriculasUsu(dni, estado);
+	}
 
 	
 }

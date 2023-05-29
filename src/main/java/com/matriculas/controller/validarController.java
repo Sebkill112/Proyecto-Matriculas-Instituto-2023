@@ -22,7 +22,7 @@ import com.matriculas.entity.Usuario;
 import com.matriculas.service.AlumnoService;
 import com.matriculas.service.DistritoService;
 import com.matriculas.service.UsuarioServices;
-@SessionAttributes({"datosUsuario","enlaces"})
+@SessionAttributes({"datosUsuario","enlaces","dniUsuario"})
 @Controller
 @RequestMapping("/validar")
 public class validarController {
@@ -52,6 +52,7 @@ public class validarController {
 		Usuario bean=servicio.loginUsuario(nomUsuario);
 		List<Enlace>lista=servicio.enlacesDelUsuario(bean.getRol().getCodigo());
 		model.addAttribute("datosUsuario",bean.getNombre());
+		model.addAttribute("dniUsuario",bean.getDni());
 		model.addAttribute("enlaces",lista);
 		
 		
@@ -109,6 +110,7 @@ public class validarController {
 			
 			serAlumno.registrarAlumno(a);
 			//Enviar atributo
+			
 			redirect.addFlashAttribute("MENSAJE","Usuario registrado");
 
 		} catch (Exception e) {

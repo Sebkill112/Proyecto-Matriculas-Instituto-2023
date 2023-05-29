@@ -1,5 +1,7 @@
 package com.matriculas.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.matriculas.dao.MatriculaRepository;
@@ -18,5 +20,9 @@ public class MatriculaService {
 	
 	public void GrabarMatricula(Matricula i) {
 		repo.save(i);
+	}
+	
+	public List<Matricula> listadoMatriculasUsu(String dni,String estado){
+		return repo.listarMatriculasUsuario(dni, estado);
 	}
 }

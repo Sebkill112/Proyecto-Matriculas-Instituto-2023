@@ -37,8 +37,7 @@
 
 		<form class="row g-3" method="post" action="/matricula/grabar">
 			
-			
-			
+	
 			
 			<div class="col-md-4">
 				<strong> <label for="inputEmail4" class="form-label">Numero de Registro</label></strong>
@@ -164,7 +163,7 @@
 			var listado=[];
 			let dni,resultado;
 			dni=$("#id-dni").val();
-		$.get("/inscripcion/alumno", function (response) {
+		$.get("/matricula/alumno", function (response) {
 			
 			$.each(response,function(index,item){
 				listado.push(item.dni);
