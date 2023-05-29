@@ -107,7 +107,7 @@ public class validarController {
 			u.setCodigo(dis);
 			a.setDistrito(u);
 			
-			serAlumno.GrabarAlumno(a);
+			serAlumno.registrarAlumno(a);
 			//Enviar atributo
 			redirect.addFlashAttribute("MENSAJE","Usuario registrado");
 

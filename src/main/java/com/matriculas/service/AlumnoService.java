@@ -14,7 +14,10 @@ public class AlumnoService {
 	@Autowired
 	private AlumnoRepository repo;
 	
-    public void GrabarAlumno(Alumno a) {
+    public void registrarAlumno(Alumno a) {
+    	repo.save(a);
+    }
+    public void actualizarAlumno(Alumno a) {
     	repo.save(a);
     }
     
@@ -29,4 +32,11 @@ public class AlumnoService {
     public Alumno BuscarAlumnoPorCodigo(String dni) {
     	return repo.findById(dni).orElse(null);
     }
+    
+    public boolean exiteDni(String dni)
+    {
+    	return repo.existsByDni(dni);
+    }
+    
+    
 }
