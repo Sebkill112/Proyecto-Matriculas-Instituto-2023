@@ -12,8 +12,9 @@
 
 <style>
 	/*body{
-		background: #000;
+		background: lightgray;
 	}
+	/*
 	tr{
 		color: #fff;
 	}*/
@@ -96,40 +97,60 @@
 	/*.toast-succes{
 		width: 120px;
 	}*/
+	
+	
 </style> 
 
 </head>
 <body>
 <!--crear fragmento "cabecera" -->
 <div th:fragment="menu">
-		<div class="pos-f-t">
-			<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-				  <div class="navbar-header">
-					   <div class="navbar-header">
-						 <a class="navbar-brand" href="#">Instituto</a>
-						</div>
-				</div>
-			  <div class="collapse navbar-collapse">
-				   <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 30px;">
-						<li class="nav-item" th:each="row:${session.enlaces}">
-						  <a class="nav-link" th:text="${row.descripcion}" th:href="${row.ruta}"></a>
-						</li>
-				
-				  </ul>
-				   
-				  <div class="navbar-nav ml-auto">
-					  <div class="flex" style="width:200px!important;padding-top: 10px;font-weight:bold ">
-			      		<span class="text-white">Usuario: </span><span class="text-white" th:text="${session.datosUsuario}"></span>
-			      	  </div>
-					  <span class="nav-item nav-link"></span>  
-					  <form method="post" th:action="@{/logout}"> 
-								<input type="submit" class="btn btn-success"  value="Cerrar sesión">
-					  </form>
-				  </div>
-			</div>
-			</nav>
-		</div>
+		<div class="pos-f-t" id="mn">
+        <nav class="navbar navbar-expand-sm navbar-dark" style="background: blueviolet;">
+            <div class="navbar-header">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/validar/intranet">Instituto</a>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="padding-left: 30px;">
+                    <li class="nav-item" th:each="row:${session.enlaces}">
+                        <a class="nav-link" th:text="${row.descripcion}" th:href="${row.ruta}"></a>
+                    </li>
+                </ul>
+
+                <div class="navbar-nav ml-auto">
+                    <div class="flex" style="width:200px!important;font-weight:bold;display: flex;justify-content: center;align-items: center;">
+                        <span class="text-white">Usuario:   </span><span></span> <span class="text-white" th:text="${session.datosUsuario}"></span>
+                    </div>
+                    <span class="nav-item nav-link"></span>
+                    <form method="post" th:action="@{/logout}">
+                        <input type="submit" class="btn btn-success" value="Cerrar sesión">
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
 </div>
+
+<style>
+    /* Agrega tus estilos personalizados aquí */
+    /* Por ejemplo: */
+    .navbar-brand {
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .nav-link {
+        color: #fff;
+    }
+
+    .flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 
 <div th:fragment="pie">
 	
