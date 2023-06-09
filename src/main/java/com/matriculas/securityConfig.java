@@ -24,7 +24,33 @@ import com.matriculas.security.security;
 //habilitar metodo para validar clave
 @EnableMethodSecurity
 public class securityConfig {
-	
+	//autenticacion
+		@Bean
+		public UserDetailsService userDetailsService() {
+		/*	UserDetails usuario1=User.withUsername("emanuel").password("{noop}123").roles("ADMIN").build();
+			UserDetails usuario2=User.withUsername("alicia").password("{noop}456").roles("USER").build();
+			
+
+			return new InMemoryUserDetailsManager(usuario1,usuario2);*/
+			
+			return new security();
+		}
+		
+		@Bean
+		//interfaz AuthenticationProvider
+		public AuthenticationProvider AuthenticationProvider() {
+			DaoAuthenticationProvider dao=new DaoAuthenticationProvider();
+			dao.setUserDetailsService(userDetailsService());
+			dao.setPasswordEncoder(password());
+			return dao;
+		}
+		
+		@Bean
+		public BCryptPasswordEncoder password() {
+			
+			return new BCryptPasswordEncoder();
+		}
+
 	//autorizacion
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -43,35 +69,15 @@ public class securityConfig {
 		
 		http.csrf().disable().authorizeHttpRequests().requestMatchers("/validar/**","/resources/js/**","/resources/css/**","resources/img/**",
 				"/resources/datepicker/**","/resources/**alertifyjs/**","/home/**").permitAll().and().authorizeHttpRequests().
-		requestMatchers("/docente/**","/alumno/**","/carrera/**","/matricula/**","/horario/**").authenticated().and().formLogin().loginPage("/validar/usuario").defaultSuccessUrl("/validar/intranet");
+		requestMatchers("/horario/**").hasAuthority("Alumno").requestMatchers("/matricula/**").hasAuthority("Secretaria").
+		and().authorizeHttpRequests().requestMatchers("/alumno/**","/carrera/**","docente/**").hasAnyAuthority("Administrador").
+		and().formLogin().loginPage("/validar/usuario").defaultSuccessUrl("/validar/intranet");
 		
 		return http.build();
 	}
 	
-	//autenticacion
-	@Bean
-	public UserDetailsService userDetailsService() {
-	/*	UserDetails usuario1=User.withUsername("emanuel").password("{noop}123").roles("ADMIN").build();
-		UserDetails usuario2=User.withUsername("alicia").password("{noop}456").roles("USER").build();
-		
-
-		return new InMemoryUserDetailsManager(usuario1,usuario2);*/
-		
-		return new security();
-	}
 	
-	@Bean
-	//interfaz AuthenticationProvider
-	public AuthenticationProvider AuthenticationProvider() {
-		DaoAuthenticationProvider dao=new DaoAuthenticationProvider();
-		dao.setUserDetailsService(userDetailsService());
-		dao.setPasswordEncoder(password());
-		return dao;
-	}
-
-	@Bean
-	public BCryptPasswordEncoder password() {
-		
-		return new BCryptPasswordEncoder();
-	}
+	
+	
+	
 }
