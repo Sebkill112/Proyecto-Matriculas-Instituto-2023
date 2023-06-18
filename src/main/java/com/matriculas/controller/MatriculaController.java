@@ -32,6 +32,7 @@ public class MatriculaController {
 
 	@Autowired
 	private CarreraService serCarrera;
+	
 
 	@RequestMapping("/registro")
 	public String registro(Model model) {
@@ -45,6 +46,11 @@ public class MatriculaController {
 	@ResponseBody
 	public List<Alumno> listarAlumnos() {
 		return serAlumno.ListarAlumnos();
+	}
+	@RequestMapping("/buscar")
+	@ResponseBody
+	public Matricula buscarMatricula(@RequestParam("codigo")String cod) {
+		return servicio.buscarPorID(cod);
 	}
 	
 	@RequestMapping("/grabar")

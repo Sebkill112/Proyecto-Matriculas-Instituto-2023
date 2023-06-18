@@ -1,7 +1,9 @@
 package com.matriculas.entity;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -15,7 +17,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "matricula")
-public class Matricula {
+public class Matricula implements Serializable {
 
 	@Id
 	@Column(name = "id_matricula")
@@ -34,6 +36,11 @@ public class Matricula {
 	@ManyToOne
 	@JoinColumn(name = "dni")
 	private Alumno alumno;
+
+	// Relación UNO a MUCHOS
+	@OneToMany(mappedBy = "matricula")
+	@JsonIgnore
+	private List<DetalleMatricula> listaDetalleMatricula;
 
 	public String getIdMatricula() {
 		return idMatricula;
@@ -81,6 +88,14 @@ public class Matricula {
 
 	public void setAlumno(Alumno alumno) {
 		this.alumno = alumno;
+	}
+
+	public List<DetalleMatricula> getListaDetalleMatricula() {
+		return listaDetalleMatricula;
+	}
+
+	public void setListaDetalleMatricula(List<DetalleMatricula> listaDetalleMatricula) {
+		this.listaDetalleMatricula = listaDetalleMatricula;
 	}
 
 }

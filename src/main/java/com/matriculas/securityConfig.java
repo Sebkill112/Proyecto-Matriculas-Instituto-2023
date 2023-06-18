@@ -69,7 +69,7 @@ public class securityConfig {
 		
 		http.csrf().disable().authorizeHttpRequests().requestMatchers("/validar/**","/resources/js/**","/resources/css/**","resources/img/**",
 				"/resources/datepicker/**","/resources/**alertifyjs/**","/home/**").permitAll().and().authorizeHttpRequests().
-		requestMatchers("/horario/**","matricula/listar").hasAuthority("Alumno").requestMatchers("/matricula/**","/alumno/buscar","/carrera/buscar").hasAuthority("Secretaria").
+		requestMatchers("/horario/**","matricula/listar","matricula/buscar").hasAuthority("Alumno").requestMatchers("/matricula/**","/alumno/buscar","/carrera/buscar").hasAuthority("Secretaria").
 		and().authorizeHttpRequests().requestMatchers("/alumno/**","/carrera/**","docente/**").hasAnyAuthority("Administrador").
 		and().formLogin().loginPage("/validar/usuario").defaultSuccessUrl("/validar/intranet");
 		

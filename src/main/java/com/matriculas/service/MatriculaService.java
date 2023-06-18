@@ -25,4 +25,7 @@ public class MatriculaService {
 	public List<Matricula> listadoMatriculasUsu(String dni,String estado){
 		return repo.listarMatriculasUsuario(dni, estado);
 	}
+	public Matricula buscarPorID(String cod) {
+		return repo.findById(cod).orElse(null);
+	}
 }
