@@ -109,12 +109,12 @@
 				    <label for="exampleCondicion" class="form-label">Ciclo</label>
 				    <select class="form-select form-control" name="ciclo" id="id-ciclo">
 					  <option value="" selected>[Seleccione Ciclo]</option>
-					  <option value="I CICLO" >I CICLO</option>
-					  <option value="II CICLO" >II CICLO</option>
-					  <option value="III CICLO" >III CICLO</option>
-					  <option value="IV CICLO" >IV CICLO</option>
-					  <option value="V CICLO" >V CICLO</option>
-					  <option value="VI CICLO" >VI CICLO</option>		
+					  <option value=1 >I CICLO</option>
+					  <option value=2 >II CICLO</option>
+					  <option value=3 >III CICLO</option>
+					  <option value=4 >IV CICLO</option>
+					  <option value=5 >V CICLO</option>
+					  <option value=6 >VI CICLO</option>		
 
 					</select>
 				  </div>
@@ -192,7 +192,6 @@
 			let cod;
 			cod=$("#id-carrera option:selected").val();
 			$.get("/carrera/buscar?codigo="+cod, function (response) {
-				console.log(response);
 			$("#id-facultad").val(response.facultad.nombre);
 			$("#id-ciclo").val(response.ciclos);
 			$("#id-creditos").val(response.creditos);

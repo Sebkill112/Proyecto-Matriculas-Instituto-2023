@@ -25,7 +25,7 @@ public class Matricula {
 	@Column(name = "estado")
 	private String estado;
 	@Column(name = "ciclo")
-	private String ciclo;
+	private int ciclo;
 
 	@ManyToOne
 	@JoinColumn(name = "id_carrera")
@@ -59,11 +59,11 @@ public class Matricula {
 		this.estado = estado;
 	}
 
-	public String getCiclo() {
+	public int getCiclo() {
 		return ciclo;
 	}
 
-	public void setCiclo(String ciclo) {
+	public void setCiclo(int ciclo) {
 		this.ciclo = ciclo;
 	}
 

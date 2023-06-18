@@ -49,7 +49,7 @@ public class MatriculaController {
 	
 	@RequestMapping("/grabar")
 	public String GrabarInscripcion(@RequestParam("numero") String cod,@RequestParam("carrera") int carrera,@RequestParam("fecha")
-	String fec,@RequestParam("dni") String dni,@RequestParam("ciclo") String ciclo,RedirectAttributes redirect) {
+	String fec,@RequestParam("dni") String dni,@RequestParam("ciclo") int ciclo,RedirectAttributes redirect) {
 		
 		try {
 			Matricula ins = new Matricula();
