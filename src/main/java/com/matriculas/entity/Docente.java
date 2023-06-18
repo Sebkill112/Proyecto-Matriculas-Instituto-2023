@@ -2,6 +2,7 @@ package com.matriculas.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -35,7 +36,9 @@ public class Docente {
 	@Column(name="genero")
 	private String genero;
 	
-	
+	@OneToMany(mappedBy = "docente")
+	@JsonIgnore
+	private List<Horario> listaHorario;
 
 	public Integer getCodigo() {
 		return codigo;
@@ -83,6 +86,14 @@ public class Docente {
 
 	public void setGenero(String genero) {
 		this.genero = genero;
+	}
+
+	public List<Horario> getListaHorario() {
+		return listaHorario;
+	}
+
+	public void setListaHorario(List<Horario> listaHorario) {
+		this.listaHorario = listaHorario;
 	}
 
 	
