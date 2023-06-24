@@ -18,9 +18,8 @@ import jakarta.persistence.Table;
 @Table(name ="curso")
 public class Curso {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_curso")
-	private Integer codigo;
+	private String codigo;
 	@Column(name= "nombre_curso")
 	private String nombre;
 	@Column(name= "descripcion")
@@ -36,11 +35,11 @@ public class Curso {
 	@JsonIgnore
 	private List<Horario> listaHorario;
 
-	public Integer getCodigo() {
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(Integer codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
