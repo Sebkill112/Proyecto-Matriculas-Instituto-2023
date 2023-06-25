@@ -125,10 +125,13 @@
 	<script th:inline="javascript" th:if="${MENSAJE!=null}">
 		//recuperar atributo MENSAJE
 		let men=/*[[${MENSAJE}]]*/
-			toastr.success(men, toastr.options = {
-			"timeOut": "2000",
-			"positionClass " : " toast-top-right ",
-		});
+			Swal.fire({
+				position: 'top-end',
+				icon: 'success',
+				title: men,
+				showConfirmButton: false,
+				timer: 2000
+			})
 	</script>
 	
 	

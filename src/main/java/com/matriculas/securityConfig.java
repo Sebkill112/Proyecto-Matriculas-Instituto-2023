@@ -54,23 +54,14 @@ public class securityConfig {
 	//autorizacion
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		/*http
-			.authorizeHttpRequests((requests) -> requests
-				.requestMatchers("/", "/home").permitAll()
-				.anyRequest().authenticated()
-			)
-			.formLogin((form) -> form
-				.loginPage("/validar/usuario")
-				.permitAll()
-			)
-			.logout((logout) -> logout.permitAll());
-
-		return http.build();*/
 		
+	
 		http.csrf().disable().authorizeHttpRequests().requestMatchers("/validar/**","/resources/js/**","/resources/css/**","resources/img/**",
 				"/resources/datepicker/**","/resources/**alertifyjs/**","/home/**").permitAll().and().authorizeHttpRequests().
-		requestMatchers("/horario/**","matricula/listar","matricula/buscar").hasAuthority("Alumno").requestMatchers("/matricula/**","/alumno/buscar","/carrera/buscar").hasAuthority("Secretaria").
-		and().authorizeHttpRequests().requestMatchers("/alumno/**","/carrera/**","/docente/**","/curso/**").hasAnyAuthority("Administrador").
+		requestMatchers("/docente/**","/curso/**").hasAuthority("Administrador").
+		requestMatchers("/horario/**","matricula/listar","matricula/buscar").hasAnyAuthority("Alumno","Administrador").
+		requestMatchers("/matricula/**","/carrera/**","/alumno/**").hasAnyAuthority("Secretaria","Administrador").
+		
 		and().formLogin().loginPage("/validar/usuario").defaultSuccessUrl("/validar/intranet");
 		
 		return http.build();

@@ -147,15 +147,18 @@
 	<script src="https://kit.fontawesome.com/08aaa156fb.js" crossorigin="anonymous"></script>
 	<script th:src="@{/resources/alertifyjs/alertify.js}"></script>
 	<script th:src="@{/resources/alertifyjs/alertify.min.js}"></script>
-	
+	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	
 	<script th:inline="javascript" th:if="${MENSAJE!=null}">
 		let msj;
 		msj=/*[[${MENSAJE}]]*/
-		toastr.success(msj, toastr.options = {
-			"timeOut": "2000",
-			"positionClass " : " toast-top-right ",
-		});
+		Swal.fire({
+				position: 'top-end',
+				icon: 'success',
+				title: msj,
+				showConfirmButton: false,
+				timer: 2000
+			});
 	</script>
 	
 	<script>
