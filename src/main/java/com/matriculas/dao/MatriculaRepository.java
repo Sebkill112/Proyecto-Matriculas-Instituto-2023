@@ -3,12 +3,14 @@ package com.matriculas.dao;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
-
+import org.springframework.transaction.annotation.Transactional;
 
 import com.matriculas.entity.Matricula;
 
+@Transactional
 public interface MatriculaRepository extends JpaRepository<Matricula, String>{
 	
 	@Query(value = "{call sp_generar_numero()}" ,nativeQuery = true)
@@ -17,5 +19,9 @@ public interface MatriculaRepository extends JpaRepository<Matricula, String>{
 	
 	@Query("select m from Matricula m inner join Usuario u on m.alumno.dni = u.dni where u.dni=?1 and m.estado =?2")
 	public List<Matricula> listarMatriculasUsuario(String dni,String estado);
+	
+	@Modifying
+	@Query(value ="update matricula set estado =:estado WHERE id_matricula =:id",nativeQuery = true)
+	public void actualizaEstado(String estado,String id);
 
 }

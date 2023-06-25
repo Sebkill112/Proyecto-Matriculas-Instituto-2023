@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.matriculas.entity.Alumno;
 import com.matriculas.service.AlumnoService;
+import com.matriculas.service.MatriculaService;
 
 
 
@@ -20,25 +21,13 @@ class TestUsuario {
 
 	// para incriptar un password de una inyeccion 
 	@Autowired
-	private AlumnoService ser1;
+	private MatriculaService ser1;
 	
-	public int indice(String dni) {
-		List<Alumno> lista = ser1.ListarAlumnos();
-		int resu = 0;
-		String d = dni;
-		for(int i=0;i<lista.size();i++) {		
-			if(lista.get(i).getDni().equals(dni)) {
-				resu = i;
-			}
-		}
-		return resu;
-	}
 	
 	
 	@Test
 	void contextLoads() {
-		String dni= "72280526";
-		System.out.println(indice(dni));
+		
 	}
 	
 

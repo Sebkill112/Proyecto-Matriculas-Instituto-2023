@@ -10,7 +10,7 @@ import com.matriculas.entity.Matricula;
 
 public interface HorarioRepository extends JpaRepository<Horario, Integer>{
 	
-	@Query("select h from Horario h where h.turno=?1 and h.ciclo=?2")
+	@Query("select h from Horario h where h.turno=?1 and h.ciclo=?2 and h.vacantes > 0")
 	public List<Horario> listarMatriculasUsuario(String turno,int ciclo);
 
 	

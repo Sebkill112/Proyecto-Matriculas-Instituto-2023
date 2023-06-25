@@ -60,8 +60,7 @@ public class securityConfig {
 				"/resources/datepicker/**","/resources/**alertifyjs/**","/home/**").permitAll().and().authorizeHttpRequests().
 		requestMatchers("/docente/**","/curso/**").hasAuthority("Administrador").
 		requestMatchers("/horario/**","matricula/listar","matricula/buscar").hasAnyAuthority("Alumno","Administrador").
-		requestMatchers("/matricula/**","/carrera/**","/alumno/**").hasAnyAuthority("Secretaria","Administrador").
-		
+		requestMatchers("/matricula/**","/carrera/**","/alumno/**").hasAnyAuthority("Secretaria","Administrador").	
 		and().formLogin().loginPage("/validar/usuario").defaultSuccessUrl("/validar/intranet");
 		
 		return http.build();
