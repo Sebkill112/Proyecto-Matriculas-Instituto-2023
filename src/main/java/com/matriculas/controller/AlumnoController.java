@@ -1,11 +1,14 @@
 package com.matriculas.controller;
 
+import java.io.File;
+import java.io.OutputStream;
 import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,6 +18,14 @@ import com.matriculas.entity.Alumno;
 import com.matriculas.entity.Distrito;
 import com.matriculas.service.AlumnoService;
 import com.matriculas.service.DistritoService;
+
+import jakarta.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 
 @Controller
@@ -103,7 +114,22 @@ public class AlumnoController {
 		redirect.addFlashAttribute("MENSAJE", "Alumno Eliminado");			
 		return "redirect:/alumno/lista";	
 	}
-	
+	@RequestMapping("/reporte")
+	public void alumnosR(HttpServletResponse response,@RequestParam("nombre") String nom)
+	{
+		try {
+			List<Alumno> lista=serAlu.listarPorNombre(nom);
+			File file=ResourceUtils.getFile("classpath:AlumnoReporteBlue.jrxml");
+			JasperReport jasper=JasperCompileManager.compileReport(file.getAbsolutePath());
+			JRBeanCollectionDataSource origen=new JRBeanCollectionDataSource(lista);
+			JasperPrint jasperPrint=JasperFillManager.fillReport(jasper,null,origen);
+			response.setContentType("application/pdf");
+			OutputStream salida=response.getOutputStream();
+			JasperExportManager.exportReportToPdfStream(jasperPrint,salida);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	
 }
