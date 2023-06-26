@@ -36,4 +36,8 @@ public class CarreraService {
 		return repo.findById(cod).orElse(null);
 	}
 
+	public List<Carrera> listarCarrerasFacultad(int cod) {
+		return repo.findAllByFacultad(cod);
+	}
+	
 }

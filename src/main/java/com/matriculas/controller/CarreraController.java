@@ -1,5 +1,7 @@
 package com.matriculas.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +15,6 @@ import com.matriculas.service.CarreraService;
 import com.matriculas.service.FacultadService;
 
 
-// TEST ENVIO GIT SSSSS 
-// ENVIO DE PRUEBA   
-//SSSSS
 @Controller
 @RequestMapping("/carrera")
 public class CarreraController {
@@ -89,6 +88,13 @@ public class CarreraController {
 		redirect.addFlashAttribute("MENSAJE","Carrera "+cod+" eliminado");
 		
 		return "redirect:/carrera/lista";
+	}
+	
+	@RequestMapping("/listarPorFacultad")
+	@ResponseBody //genera JSON
+	public List<Carrera> listarPorLaboratorio(@RequestParam("codigo") Integer cod) {
+		return serCarrera.listarCarrerasFacultad(cod);
+		
 	}
 	
 }

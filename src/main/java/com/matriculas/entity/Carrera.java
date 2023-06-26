@@ -18,8 +18,6 @@ import jakarta.persistence.Table;
 @Table(name = "carrera")
 public class Carrera {
 
-	// Test Envio SSSS  
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_carrera")

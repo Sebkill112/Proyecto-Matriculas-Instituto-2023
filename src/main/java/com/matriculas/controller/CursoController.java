@@ -14,6 +14,7 @@ import com.matriculas.entity.Carrera;
 import com.matriculas.entity.Curso;
 import com.matriculas.service.CarreraService;
 import com.matriculas.service.CursoService;
+import com.matriculas.service.FacultadService;
 
 @Controller
 @RequestMapping("/curso")
@@ -23,11 +24,15 @@ public class CursoController {
     @Autowired
     private CarreraService serCarrera;
     
+    @Autowired
+    private FacultadService serfacultad;
+    
 	@RequestMapping("/lista")
 	public String lista(Model model) {
 		
 		model.addAttribute("curso",serCurso.listarCursos());
 		model.addAttribute("carrera", serCarrera.listarCarreras());
+		model.addAttribute("facultad", serfacultad.listarFacultades());
 		
 		
 		return "curso";

@@ -54,5 +54,7 @@ public class DetalleMatricula implements Serializable {
 	public void setHorario(Horario horario) {
 		this.horario = horario;
 	}
+	
+	
 
 }
