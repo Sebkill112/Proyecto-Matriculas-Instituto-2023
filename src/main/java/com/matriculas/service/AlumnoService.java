@@ -37,6 +37,10 @@ public class AlumnoService {
     {
     	return repo.existsByDni(dni);
     }
+    public List<Alumno> listarPorNombre(String nom)
+    {
+    	return repo.listaAlumoPorNombre(nom);
+    }
     
     
 }

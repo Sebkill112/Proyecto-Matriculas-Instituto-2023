@@ -117,6 +117,15 @@
 			<input type="hidden" name="dniDelete" id="dni-eliminar"/>
 		</form>
 		<!--Semana 05-1-F Creando un formulario-->
+		<br>
+		<br>
+		<h5>Reporte de alumno por nombre:</h5>
+		<form action="/alumno/reporte" method="post" id="form-consultar">
+			<input type="text" name="nombreConsulta" id="input-consultar" class="mt-2"/>
+			<button type="button" id="btn-consulta" class="btn btn-success"> Generar </button>
+		</form>
+		<br>
+		
 		
 	</div>
 	<div th:insert="plantilla/UITemplate :: pie"></div>
@@ -201,13 +210,18 @@
 			//Resetear validaciones
 			$("#idRegistra").data("bootstrapValidator").resetForm(true);
 			
-		})		
+		})	
+		$(document).on("click","#btn-consulta", function(){
+			nom=$("#input-consultar").val();
+			window.location.href = `/alumno/reporte?nombre=${nom}`;
+		})	
 		
 		
 		//
 		function removeSpaces(input) {
 		    input.value = input.value.replace(/\s/g, '');
-		}	
+		}
+			
 
 	</script>
 	
