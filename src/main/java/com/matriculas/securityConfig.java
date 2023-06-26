@@ -58,7 +58,7 @@ public class securityConfig {
 	
 		http.csrf().disable().authorizeHttpRequests().requestMatchers("/validar/**","/resources/js/**","/resources/css/**","resources/img/**",
 				"/resources/datepicker/**","/resources/**alertifyjs/**","/home/**").permitAll().and().authorizeHttpRequests().
-		requestMatchers("/docente/**","/curso/**").hasAuthority("Administrador").
+		requestMatchers("/docente/**","/curso/**","/horariocrud/**").hasAuthority("Administrador").
 		requestMatchers("/horario/**","matricula/listar","matricula/buscar").hasAnyAuthority("Alumno","Administrador").
 		requestMatchers("/matricula/**","/carrera/**","/alumno/**").hasAnyAuthority("Secretaria","Administrador").	
 		and().formLogin().loginPage("/validar/usuario").defaultSuccessUrl("/validar/intranet");
